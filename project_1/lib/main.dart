@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './login.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      //home: MyHomePage(),
+      home: Home_login_Page(),
     );
   }
 }
@@ -38,6 +40,21 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         title: Text("ỨNG DỤNG QUẢN LÝ CÔNG VIỆC",style: TextStyle(fontFamily: "Time New Roman", fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
       ),
+      body: MyDashboard(),
     );
+  }
+}
+
+class MyDashboard extends StatefulWidget {
+  const MyDashboard({super.key});
+
+  @override
+  State<MyDashboard> createState() => _MyDashboardState();
+}
+
+class _MyDashboardState extends State<MyDashboard> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
   }
 }
