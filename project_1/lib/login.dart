@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './home.dart';
+import 'home.dart';
+import 'Signup.dart';
 class Home_login_Page extends StatefulWidget {
   const Home_login_Page({super.key});
 
@@ -99,23 +100,20 @@ class _Home_login_PageState extends State<Home_login_Page> {
             ),
             Container(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Container(
-                    margin: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 5.0),
-                    padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
                     child: ElevatedButton(
                       child: Text('SIGN IN'),
                       onPressed: OnClickedSignin,
                     ),
                   ),
                   Container (
-                    margin: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 5.0),
-                    padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
                     child: ElevatedButton(
                       child: const Text('SIGN UP'),
-                      onPressed: (){
-                        //do some thing
-                      },
+                      onPressed: OnClickedSignup,
                     ),
                   ),
                 ]
@@ -155,6 +153,14 @@ void OnClickedSignin(){
 
 Widget GotoHome (BuildContext context){
   return HomePage();
+}
+
+void OnClickedSignup(){
+  Navigator.push(context, MaterialPageRoute(builder: GotoSignup));
+}
+
+Widget GotoSignup (BuildContext context){
+  return SignupPage();
 }
 
 }
