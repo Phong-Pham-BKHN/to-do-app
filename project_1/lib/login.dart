@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
-
-void main(){
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'TODO APP',
-      home: Home_login_Page(),
-    );
-  }
-}
-
+import './home.dart';
 class Home_login_Page extends StatefulWidget {
   const Home_login_Page({super.key});
 
@@ -25,12 +9,17 @@ class Home_login_Page extends StatefulWidget {
 
 class _Home_login_PageState extends State<Home_login_Page> {
   
-  final _formKey = GlobalKey<_Home_login_PageState>();
+  bool _showpass = false;
+  TextEditingController _userController = new TextEditingController();
+  TextEditingController _passController = new TextEditingController();
+  var _userNameErr = "User Name is invalid";
+  var _passErr = "Password is invalid";
+  var _usercheck = false;
+  var _passcheck = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _formKey,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -40,7 +29,7 @@ class _Home_login_PageState extends State<Home_login_Page> {
               margin: EdgeInsets.all(20.0),
               padding: EdgeInsets.fromLTRB(10.0, 100.0, 10.0, 10.0),
               decoration: BoxDecoration(),
-              child: Text(
+              child: const Text(
               'Chào mừng bạn đến với \n TODO APP',
               style: TextStyle(fontFamily: 'Time New Roman', fontWeight: FontWeight.bold, color: Colors.black, fontSize: 31),
               textAlign: TextAlign.center,
@@ -53,70 +42,77 @@ class _Home_login_PageState extends State<Home_login_Page> {
               decoration: const BoxDecoration(
                 image: DecorationImage(image:  AssetImage('/Users/apple/Documents/To_do_app_Project/to-do-app-1/project_1/Image/Bg_DB.jpeg')),
             )),
-            //Select account
-            Container(
-              margin: EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 175.0, 10.0),
-              child: Text(
-                'Chọn tài khoản',
-                style: TextStyle(fontFamily: 'Time New Roman', fontWeight: FontWeight.w300, fontSize: 17),
-                textAlign: TextAlign.left,
-              ),
-            ),
             Container(
               margin: EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
               padding: EdgeInsets.fromLTRB(0.0, 0.0, 237.0, 10.0),
-              child: Text (
+              child: const Text (
                 'Login',
                 style: TextStyle(fontFamily: 'Time New Roman',fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
                 textAlign: TextAlign.left,
               ),
             ),
             //Login form
-            TextFormField(
-              decoration: const InputDecoration(
+            Container(
+              padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+              child: TextFormField(
+              controller: _userController,
+              decoration: InputDecoration(
                 icon: const Icon(Icons.account_box_sharp, size: 27),
-                hintText: 'Tên tài khoản',
-                labelText: 'Tài khoản'
+                errorText: _usercheck ? _userNameErr : null,
+                labelText: 'User Name'
               ),
               validator: (value){
                 if (value!.isNotEmpty){
-                  return 'Nhập vào tài khoản';
+                  return 'Type User';
                 }
                 return null;
               },
             ),
-            TextFormField(
-              decoration: const InputDecoration(
+            ),
+            Container (
+              padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
+              child: Stack(
+              alignment: AlignmentDirectional.centerEnd,
+              children: <Widget> [
+                TextFormField(
+              obscureText: !_showpass,
+              controller: _passController,
+              decoration: InputDecoration(
                 icon: const Icon(Icons.key, size: 27),
-                hintText: 'Mật khẩu',
-                labelText: 'Mật khẩu'
+                errorText: _passcheck ? _passErr : null,
+                labelText: 'Password'
               ),
               validator: (value){
                 if (value!.isNotEmpty){
-                  return 'Nhập vào mật khẩu';
+                  return 'Type Password';
                 }
                 return null;
               }
+            ),
+              GestureDetector(
+                onTap: OnToggleShowPass,
+                child:  Text( _showpass ? 'HIDE' : 'SHOW', style: const TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Time New Roman', fontSize: 13, color: Colors.blue), textAlign: TextAlign.right),
+              )
+            
+              ],
+            ),
             ),
             Container(
               child: Row(
                 children: [
                   Container(
-                    margin: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 5.0),
-                    padding: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                    margin: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
                     child: ElevatedButton(
-                      child: Text('Sign In'),
-                      onPressed: () {
-                        //do some thing
-                      },
+                      child: Text('SIGN IN'),
+                      onPressed: OnClickedSignin,
                     ),
                   ),
                   Container (
-                    margin: EdgeInsets.fromLTRB(60.0, 10.0, 60.0, 5.0),
-                    padding: EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
+                    margin: const EdgeInsets.fromLTRB(50.0, 10.0, 50.0, 5.0),
+                    padding: const EdgeInsets.fromLTRB(5.0, 5.0, 5.0, 5.0),
                     child: ElevatedButton(
-                      child: Text('Sign Up'),
+                      child: const Text('SIGN UP'),
                       onPressed: (){
                         //do some thing
                       },
@@ -127,10 +123,40 @@ class _Home_login_PageState extends State<Home_login_Page> {
             ),
           ]
         )
-
-         
-        
       ),
     );
   }
+
+void OnToggleShowPass(){
+  setState((){
+    _showpass = !_showpass;
+  });
 }
+
+void OnClickedSignin(){
+  setState(() {
+    if (_userController.text.length < 9){
+      _usercheck = true;
+    }
+    else {
+      _usercheck = false;
+    }
+    if (_passController.text.length < 6){
+      _passcheck = true;
+    }
+    else {
+      _passcheck = false;
+    }
+    if (!_usercheck && !_passcheck){
+      Navigator.push(context, MaterialPageRoute(builder: GotoHome));
+    }
+  });
+}
+
+Widget GotoHome (BuildContext context){
+  return HomePage();
+}
+
+}
+
+
