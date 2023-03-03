@@ -26,9 +26,10 @@ class _Home_login_PageState extends State<Home_login_Page> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             //Title
+
             Container(
               margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.fromLTRB(10.0, 100.0, 10.0, 10.0),
+              padding: EdgeInsets.fromLTRB(10.0, 50.0, 10.0, 10.0),
               decoration: BoxDecoration(),
               child: const Text(
               'Chào mừng bạn đến với \n TODO APP',
@@ -38,14 +39,14 @@ class _Home_login_PageState extends State<Home_login_Page> {
             ),
             //Image
             Container(
-              height:300,
+              height:250,
               width: double.infinity,
               decoration: const BoxDecoration(
-                image: DecorationImage(image:  AssetImage('/Users/apple/Documents/To_do_app_Project/to-do-app-1/project_1/Image/Bg_DB.jpeg')),
+                image: DecorationImage(image:  AssetImage('Image/Bg_DB.jpeg')),
             )),
             Container(
               margin: EdgeInsets.fromLTRB(0.0, 0.0, 100.0, 0.0),
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 237.0, 10.0),
+              padding: EdgeInsets.fromLTRB(0.0, 10.0, 237.0, 10.0),
               child: const Text (
                 'Login',
                 style: TextStyle(fontFamily: 'Time New Roman',fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
@@ -62,42 +63,31 @@ class _Home_login_PageState extends State<Home_login_Page> {
                 errorText: _usercheck ? _userNameErr : null,
                 labelText: 'User Name'
               ),
-              validator: (value){
-                if (value!.isNotEmpty){
-                  return 'Type User';
-                }
-                return null;
-              },
             ),
             ),
+            
             Container (
               padding: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
               child: Stack(
               alignment: AlignmentDirectional.centerEnd,
               children: <Widget> [
                 TextFormField(
-              obscureText: !_showpass,
-              controller: _passController,
-              decoration: InputDecoration(
-                icon: const Icon(Icons.key, size: 27),
-                errorText: _passcheck ? _passErr : null,
-                labelText: 'Password'
-              ),
-              validator: (value){
-                if (value!.isNotEmpty){
-                  return 'Type Password';
-                }
-                return null;
-              }
-            ),
-              GestureDetector(
-                onTap: OnToggleShowPass,
-                child:  Text( _showpass ? 'HIDE' : 'SHOW', style: const TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Time New Roman', fontSize: 13, color: Colors.blue), textAlign: TextAlign.right),
-              )
-            
+                  obscureText: !_showpass,
+                  controller: _passController,
+                  decoration: InputDecoration(
+                    icon: const Icon(Icons.vpn_key, size: 27),
+                    errorText: _passcheck ? _passErr : null,
+                    labelText: 'Password'
+                  ),
+                ),
+                GestureDetector(
+                  onTap: OnToggleShowPass,
+                  child:  Text( _showpass ? 'HIDE' : 'SHOW', style: const TextStyle(fontWeight: FontWeight.bold,fontFamily: 'Time New Roman', fontSize: 13, color: Colors.blue), textAlign: TextAlign.right),
+                )
               ],
             ),
             ),
+            
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
