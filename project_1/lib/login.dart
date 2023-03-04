@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
-import 'Signup.dart';
+import 'SignUpPage.dart';
 
 class Home_login_Page extends StatefulWidget {
   const Home_login_Page({super.key});
@@ -157,6 +157,6 @@ class _Home_login_PageState extends State<Home_login_Page> {
   }
 
   Widget GotoSignup(BuildContext context) {
-    return SignupPage();
+    return SignUpPage();
   }
 }
