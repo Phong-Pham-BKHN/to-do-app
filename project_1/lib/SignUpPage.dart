@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'login.dart';
 
@@ -37,7 +36,6 @@ class _SignUpPageState extends State<SignUpPage> {
           Stack(
             children: <Widget>[
               Stack(
-                //padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
                 children: [
                   Container(
                       width: w,
